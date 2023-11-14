@@ -39,8 +39,25 @@ main {
 			align-items: center;
 			font-size: 4rem;
 
+			h1 {
+				span {
+					display: inline-block;
+					transform: scale(3) rotate(120deg) translateX(100px);
+					opacity: 0;
+					transition-duration: 1s;
+				}
+			}
+
+			//box가 활성화 되었을때
 			&.on {
 				opacity: 1;
+
+				h1 {
+					span {
+						transform: scale(1) rotate(0deg) translateX(0px);
+						opacity: 1;
+					}
+				}
 			}
 		}
 	}

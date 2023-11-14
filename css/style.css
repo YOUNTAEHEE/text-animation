@@ -54,7 +54,17 @@ main .boxs article {
   align-items: center;
   font-size: 4rem;
 }
+main .boxs article h1 span {
+  display: inline-block;
+  transform: scale(3) rotate(120deg) translateX(100px);
+  opacity: 0;
+  transition-duration: 1s;
+}
 main .boxs article.on {
+  opacity: 1;
+}
+main .boxs article.on h1 span {
+  transform: scale(1) rotate(0deg) translateX(0px);
   opacity: 1;
 }
 

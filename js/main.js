@@ -3,8 +3,8 @@ const btns = main.querySelectorAll('li');
 const boxs = main.querySelectorAll('article');
 const tits = main.querySelectorAll('h1');
 
-splitText(tits[0]);
-splitText(tits[1]); //querySelector()안에 문자열('h1')이어야하는데 지금 돔(h1이라는 DOM자체) 보내고 있음 그래서 에러 그래서 아래 함수 수정
+splitText(tits[0], 0.2);
+splitText(tits[1], 0); //querySelector()안에 문자열('h1')이어야하는데 지금 돔(h1이라는 DOM자체) 보내고 있음 그래서 에러 그래서 아래 함수 수정
 
 btns.forEach((btn, idx) => {
 	btn.addEventListener('click', () => {
@@ -18,8 +18,12 @@ function activation(arr, idx) {
 	arr[idx].classList.add('on');
 }
 
-function splitText(el) {
+function splitText(el, interval) {
 	let tags = '';
-	for (let letter of el.innerText) tags += `<span>${letter}</span>`;
+	let count = 0;
+	for (let letter of el.innerText) {
+		tags += `<span style='transition-delay:${interval * count}s;'>${letter}</span>`; //이게 인라인 스타일
+		count++;
+	}
 	el.innerHTML = tags;
 }
