@@ -1,25 +1,25 @@
-/*const h1 = document.querySelector('h1');
-const text = h1.innerText;
-let tags = '';
+const main = document.querySelector('main');
+const btns = main.querySelectorAll('li');
+const boxs = main.querySelectorAll('article');
+const tits = main.querySelectorAll('h1');
 
-for (let letter of text) {
-	console.log(letter);
-	tags += `<span>${letter}</span>`;
+splitText(tits[0]);
+splitText(tits[1]); //querySelector()안에 문자열('h1')이어야하는데 지금 돔(h1이라는 DOM자체) 보내고 있음 그래서 에러 그래서 아래 함수 수정
+
+btns.forEach((btn, idx) => {
+	btn.addEventListener('click', () => {
+		activation(btns, idx);
+		activation(boxs, idx);
+	});
+});
+
+function activation(arr, idx) {
+	arr.forEach((el) => el.classList.remove('on'));
+	arr[idx].classList.add('on');
 }
 
-console.log(tags);
-h1.innerHTML = tags;
-*/
-
-splitText('h1');
-splitText('h2');
-//미션 위의 내용을 처리해주는 함수 제작(인수로 선택자 전달)
 function splitText(el) {
-	const dom = document.querySelector(el);
 	let tags = '';
-
-	for (let letter of dom.innerText) tags += `<span>${letter}</span>`;
-
-	dom.innerHTML = tags;
+	for (let letter of el.innerText) tags += `<span>${letter}</span>`;
+	el.innerHTML = tags;
 }
-//맨위처럼 쓰면 전역변수로 메모리 남아있어서 불필요한 메모리 낭비인데 함수를 쓰면 바로바로 사라지는 지역변수라 메모리 관리 효율적임.
